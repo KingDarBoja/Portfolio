@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.0",
@@ -22,6 +23,8 @@
     "esbuild": true
   },
   "devDependencies": {
-    "sass": "^1.103.1"
+    "husky": "^9.1.7",
+    "sass": "^1.103.1",
+    "semantic-commit-emoji": "^2.0.0"
   }
 }
