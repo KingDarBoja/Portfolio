@@ -1,35 +1,37 @@
-@use './theme.scss' as *;
+@use "./theme.scss" as *;
 
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-  font-family: $font-sans;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  font-size: 18px;
-  line-height: 1.7;
-  transition: background-color 0.3s ease, color 0.3s ease;
+	font-family: $font-sans;
+	background-color: var(--bg-primary);
+	color: var(--text-primary);
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	font-size: 18px;
+	line-height: 1.7;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
 }
 
 main {
-  flex: 1;
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem;
-  box-sizing: border-box;
+	flex: 1;
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 3rem 1.5rem;
+	box-sizing: border-box;
 }
 
 h1,
@@ -38,176 +40,180 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 0.5rem 0;
-  color: var(--text-primary);
-  line-height: 1.2;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+	margin: 0 0 0.5rem 0;
+	color: var(--text-primary);
+	line-height: 1.2;
+	font-weight: 700;
+	letter-spacing: -0.01em;
 }
 
 h1 {
-  font-size: 2.75rem;
+	font-size: 2.75rem;
 }
 
 h2 {
-  font-size: 2.15rem;
+	font-size: 2.15rem;
 }
 
 h3 {
-  font-size: 1.75rem;
+	font-size: 1.75rem;
 }
 
 h4 {
-  font-size: 1.35rem;
+	font-size: 1.35rem;
 }
 
 h5 {
-  font-size: 1.15rem;
+	font-size: 1.15rem;
 }
 
 h6 {
-  font-size: 1rem;
+	font-size: 1rem;
 }
 
 strong,
 b {
-  font-weight: 700;
-  color: var(--text-primary);
+	font-weight: 700;
+	color: var(--text-primary);
 }
 
 a {
-  color: var(--accent-cyan);
-  text-decoration: none;
-  transition: color 0.2s ease, text-shadow 0.2s ease;
+	color: var(--accent-cyan);
+	text-decoration: none;
+	transition:
+		color 0.2s ease,
+		text-shadow 0.2s ease;
 
-  &:hover {
-    color: var(--accent-blue);
-    text-shadow: 0 0 8px var(--border-glow);
-  }
+	&:hover {
+		color: var(--accent-blue);
+		text-shadow: 0 0 8px var(--border-glow);
+	}
 }
 
 p {
-  margin-top: 0;
-  margin-bottom: 1.25rem;
-  color: var(--text-primary);
+	margin-top: 0;
+	margin-bottom: 1.25rem;
+	color: var(--text-primary);
 }
 
 .prose p {
-  margin-bottom: 2rem;
+	margin-bottom: 2rem;
 }
 
 textarea,
 input {
-  width: 100%;
-  font-size: 1rem;
-  font-family: inherit;
-  background-color: var(--bg-secondary);
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  padding: 0.5rem 0.75rem;
-  box-sizing: border-box;
-  outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	width: 100%;
+	font-size: 1rem;
+	font-family: inherit;
+	background-color: var(--bg-secondary);
+	color: var(--text-primary);
+	border: 1px solid var(--border-color);
+	border-radius: 4px;
+	padding: 0.5rem 0.75rem;
+	box-sizing: border-box;
+	outline: none;
+	transition:
+		border-color 0.2s ease,
+		box-shadow 0.2s ease;
 
-  &:focus {
-    border-color: var(--accent-cyan);
-    box-shadow: 0 0 8px var(--border-glow);
-  }
+	&:focus {
+		border-color: var(--accent-cyan);
+		box-shadow: 0 0 8px var(--border-glow);
+	}
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1.5rem;
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 1.5rem;
 
-  th,
-  td {
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--border-color);
-    text-align: left;
-  }
+	th,
+	td {
+		padding: 0.75rem 1rem;
+		border: 1px solid var(--border-color);
+		text-align: left;
+	}
 
-  th {
-    background-color: var(--bg-secondary);
-    color: var(--text-primary);
-    font-weight: 600;
-  }
+	th {
+		background-color: var(--bg-secondary);
+		color: var(--text-primary);
+		font-weight: 600;
+	}
 
-  td {
-    background-color: var(--bg-card);
-  }
+	td {
+		background-color: var(--bg-card);
+	}
 }
 
 img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
+	max-width: 100%;
+	height: auto;
+	border-radius: 8px;
+	border: 1px solid var(--border-color);
 }
 
 code {
-  font-family: $font-mono;
-  padding: 0.2em 0.4em;
-  background-color: var(--code-bg);
-  color: var(--code-text);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  font-size: 0.9em;
+	font-family: $font-mono;
+	padding: 0.2em 0.4em;
+	background-color: var(--code-bg);
+	color: var(--code-text);
+	border: 1px solid var(--border-color);
+	border-radius: 4px;
+	font-size: 0.9em;
 }
 
 pre {
-  padding: 1.25rem;
-  border-radius: 8px;
-  background-color: var(--code-bg);
-  border: 1px solid var(--border-color);
-  overflow-x: auto;
-  margin: 1.5rem 0;
+	padding: 1.25rem;
+	border-radius: 8px;
+	background-color: var(--code-bg);
+	border: 1px solid var(--border-color);
+	overflow-x: auto;
+	margin: 1.5rem 0;
 
-  > code {
-    all: unset;
-    font-family: $font-mono;
-    color: var(--code-text);
-    font-size: 0.9em;
-  }
+	> code {
+		all: unset;
+		font-family: $font-mono;
+		color: var(--code-text);
+		font-size: 0.9em;
+	}
 }
 
 blockquote {
-  border-left: 4px solid var(--accent-cyan);
-  background-color: var(--bg-secondary);
-  padding: 1rem 1.5rem;
-  margin: 1.5rem 0;
-  font-size: 1.1rem;
-  font-style: italic;
-  color: var(--text-secondary);
-  border-radius: 0 4px 4px 0;
+	border-left: 4px solid var(--accent-cyan);
+	background-color: var(--bg-secondary);
+	padding: 1rem 1.5rem;
+	margin: 1.5rem 0;
+	font-size: 1.1rem;
+	font-style: italic;
+	color: var(--text-secondary);
+	border-radius: 0 4px 4px 0;
 }
 
 hr {
-  border: none;
-  border-top: 1px solid var(--border-color);
-  margin: 2rem 0;
+	border: none;
+	border-top: 1px solid var(--border-color);
+	margin: 2rem 0;
 }
 
 @media (max-width: 768px) {
-  body {
-    font-size: 16px;
-  }
+	body {
+		font-size: 16px;
+	}
 
-  main {
-    padding: 1.5rem 1rem;
-  }
+	main {
+		padding: 1.5rem 1rem;
+	}
 }
 
 .sr-only {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
-  white-space: nowrap;
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	white-space: nowrap;
 }

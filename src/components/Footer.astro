@@ -5,162 +5,162 @@ const today = new Date();
 const fullYear = today.getFullYear();
 
 interface SocialLink {
-  label: string;
-  url: string;
-  icon: IconName;
+	label: string;
+	url: string;
+	icon: IconName;
 }
 
 const iconLinks: SocialLink[] = [
-  {
-    label: "GitHub",
-    url: "https://github.com/kingdarboja",
-    icon: "github",
-  },
-  {
-    label: "LinkedIn",
-    url: "https://www.linkedin.com/in/kingdarboja/",
-    icon: "linkedin",
-  },
+	{
+		label: "GitHub",
+		url: "https://github.com/kingdarboja",
+		icon: "github",
+	},
+	{
+		label: "LinkedIn",
+		url: "https://www.linkedin.com/in/kingdarboja/",
+		icon: "linkedin",
+	},
 ];
 ---
 
 <footer class="portfolio-footer">
-  <div class="footer-container">
-    <div class="footer-credits">
-      <p class="credit-item">
-        Designed &amp; Developed with <a
-          href="https://astro.build/"
-          target="_blank"
-          rel="noopener noreferrer">Astro</a
-        >
-      </p>
-      <p class="credit-item">
-        &copy; {fullYear} Manuel Bojato. All rights reserved.
-      </p>
-    </div>
-    <div class="footer-socials">
-      {
-        iconLinks.map((social) => (
-          <a
-            href={social.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            title={social.label}
-            aria-label={social.label}
-            class="social-link"
-          >
-            <span class="sr-only">{social.label}</span>
-            <Icon name={social.icon} size={18} />
-          </a>
-        ))
-      }
-    </div>
-  </div>
+	<div class="footer-container">
+		<div class="footer-credits">
+			<p class="credit-item">
+				Designed &amp; Developed with <a
+					href="https://astro.build/"
+					target="_blank"
+					rel="noopener noreferrer">
+					Astro
+				</a>
+			</p>
+			<p class="credit-item">
+				&copy; {fullYear} Manuel Bojato. All rights reserved.
+			</p>
+		</div>
+		<div class="footer-socials">
+			{
+				iconLinks.map((social) => (
+					<a
+						href={social.url}
+						target="_blank"
+						rel="noopener noreferrer"
+						title={social.label}
+						aria-label={social.label}
+						class="social-link">
+						<span class="sr-only">{social.label}</span>
+						<Icon name={social.icon} size={18} />
+					</a>
+				))
+			}
+		</div>
+	</div>
 </footer>
 
 <style lang="scss">
-  @use "../styles/theme.scss" as *;
+	@use "../styles/theme.scss" as *;
 
-  .portfolio-footer {
-    width: 100%;
-    height: 56px;
-    background: var(--bg-secondary);
-    border-top: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    margin-top: auto;
-  }
+	.portfolio-footer {
+		width: 100%;
+		height: 56px;
+		background: var(--bg-secondary);
+		border-top: 1px solid var(--border-color);
+		color: var(--text-secondary);
+		display: flex;
+		align-items: center;
+		box-sizing: border-box;
+		margin-top: auto;
+	}
 
-  .footer-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-    box-sizing: border-box;
-  }
+	.footer-container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+		box-sizing: border-box;
+	}
 
-  .footer-credits {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    text-align: left;
+	.footer-credits {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		text-align: left;
 
-    .credit-item {
-      display: inline-block;
-      margin: 0;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      line-height: 1;
+		.credit-item {
+			display: inline-block;
+			margin: 0;
+			font-size: 0.85rem;
+			color: var(--text-secondary);
+			line-height: 1;
 
-      a {
-        color: var(--accent-cyan);
-        text-decoration: none;
-        transition: color 0.2s ease;
+			a {
+				color: var(--accent-cyan);
+				text-decoration: none;
+				transition: color 0.2s ease;
 
-        &:hover {
-          color: var(--text-primary);
-          text-decoration: underline;
-        }
-      }
-    }
-  }
+				&:hover {
+					color: var(--text-primary);
+					text-decoration: underline;
+				}
+			}
+		}
+	}
 
-  .footer-socials {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+	.footer-socials {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
 
-    .social-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent-metallic);
-      text-decoration: none;
-      transition:
-        color 0.2s ease,
-        transform 0.2s ease;
+		.social-link {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			color: var(--accent-metallic);
+			text-decoration: none;
+			transition:
+				color 0.2s ease,
+				transform 0.2s ease;
 
-      &:hover {
-        color: var(--accent-cyan);
-        transform: translateY(-1px);
-      }
-    }
-  }
+			&:hover {
+				color: var(--accent-cyan);
+				transform: translateY(-1px);
+			}
+		}
+	}
 
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
 
-  @media (max-width: 640px) {
-    .portfolio-footer {
-      height: auto;
-      min-height: 56px;
-      padding: 0.75rem 0;
-    }
+	@media (max-width: 640px) {
+		.portfolio-footer {
+			height: auto;
+			min-height: 56px;
+			padding: 0.75rem 0;
+		}
 
-    .footer-container {
-      flex-direction: column;
-      gap: 0.5rem;
-      text-align: center;
-    }
+		.footer-container {
+			flex-direction: column;
+			gap: 0.5rem;
+			text-align: center;
+		}
 
-    .footer-credits {
-      flex-direction: column;
-      gap: 0.25rem;
-      text-align: center;
-    }
-  }
+		.footer-credits {
+			flex-direction: column;
+			gap: 0.25rem;
+			text-align: center;
+		}
+	}
 </style>

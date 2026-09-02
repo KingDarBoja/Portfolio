@@ -3,547 +3,543 @@ import Icon, { type IconName } from "./Icon.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
 interface NavigationItem {
-  label: string;
-  url: string;
+	label: string;
+	url: string;
 }
 
 interface SocialLink {
-  label: string;
-  url: string;
-  icon: IconName;
+	label: string;
+	url: string;
+	icon: IconName;
 }
 
 /** Main menu items. */
 const textLinks: NavigationItem[] = [
-  {
-    label: "Home",
-    url: "/",
-  },
-  {
-    label: "About",
-    url: "/about",
-  },
-  {
-    label: "Work",
-    url: "/work",
-  },
-  {
-    label: "Blog",
-    url: "/blog",
-  },
+	{
+		label: "Home",
+		url: "/",
+	},
+	{
+		label: "About",
+		url: "/about",
+	},
+	{
+		label: "Work",
+		url: "/work",
+	},
+	{
+		label: "Blog",
+		url: "/blog",
+	},
 ];
 
 const iconLinks: SocialLink[] = [
-  {
-    label: "GitHub",
-    url: "https://github.com/kingdarboja",
-    icon: "github",
-  },
-  {
-    label: "LinkedIn",
-    url: "https://www.linkedin.com/in/kingdarboja/",
-    icon: "linkedin",
-  },
+	{
+		label: "GitHub",
+		url: "https://github.com/kingdarboja",
+		icon: "github",
+	},
+	{
+		label: "LinkedIn",
+		url: "https://www.linkedin.com/in/kingdarboja/",
+		icon: "linkedin",
+	},
 ];
 
-const currentPath =
-  Astro.url.pathname.replace(import.meta.env.BASE_URL, "") || "/";
+const currentPath = Astro.url.pathname.replace(import.meta.env.BASE_URL, "") || "/";
 ---
 
 <header class="portfolio-header">
-  <nav class="portfolio-nav" aria-label="Main navigation">
-    <!-- Brand / Name on the Left with Computer Icon -->
-    <div class="nav-brand">
-      <a href="/" class="brand-link">
-        <span class="icon-wrapper">
-          <Icon name="computer" size={22} class="brand-icon" />
-        </span>
-        <span class="brand-text">
-          <span class="brand-name">Manuel Bojato</span>
-          <span class="brand-sub">SECTOR // DEV</span>
-        </span>
-      </a>
-    </div>
+	<nav class="portfolio-nav" aria-label="Main navigation">
+		<!-- Brand / Name on the Left with Computer Icon -->
+		<div class="nav-brand">
+			<a href="/" class="brand-link">
+				<span class="icon-wrapper">
+					<Icon name="computer" size={22} class="brand-icon" />
+				</span>
+				<span class="brand-text">
+					<span class="brand-name">Manuel Bojato</span>
+					<span class="brand-sub">SECTOR // DEV</span>
+				</span>
+			</a>
+		</div>
 
-    <!-- Mobile Hamburger Toggle Button -->
-    <button
-      id="menu-toggle"
-      class="menu-toggle"
-      aria-expanded="false"
-      aria-controls="nav-menu"
-      aria-label="Toggle navigation menu"
-    >
-      <span class="toggle-bar"></span>
-      <span class="toggle-bar"></span>
-      <span class="toggle-bar"></span>
-    </button>
+		<!-- Mobile Hamburger Toggle Button -->
+		<button
+			id="menu-toggle"
+			class="menu-toggle"
+			aria-expanded="false"
+			aria-controls="nav-menu"
+			aria-label="Toggle navigation menu">
+			<span class="toggle-bar"></span>
+			<span class="toggle-bar"></span>
+			<span class="toggle-bar"></span>
+		</button>
 
-    <!-- Navigation Menu (Center + Social Right in Desktop, Collapsible in Mobile) -->
-    <div id="nav-menu" class="nav-menu">
-      <!-- Middle: Navigation Pages -->
-      <ul class="nav-links">
-        {
-          textLinks.map((link) => {
-            const isHome = link.url === "/";
-            const isActive = isHome
-              ? currentPath === "/" || currentPath === ""
-              : currentPath.startsWith(link.url);
-            return (
-              <li class="nav-item">
-                <a
-                  href={link.url}
-                  class:list={["nav-link", { active: isActive }]}
-                  aria-current={isActive ? "page" : undefined}
-                >
-                  <span class="link-bracket link-bracket-left">[</span>
-                  <span class="link-label">{link.label}</span>
-                  <span class="link-bracket link-bracket-right">]</span>
-                  <span class="active-indicator" />
-                </a>
-              </li>
-            );
-          })
-        }
-      </ul>
+		<!-- Navigation Menu (Center + Social Right in Desktop, Collapsible in Mobile) -->
+		<div id="nav-menu" class="nav-menu">
+			<!-- Middle: Navigation Pages -->
+			<ul class="nav-links">
+				{
+					textLinks.map((link) => {
+						const isHome = link.url === "/";
+						const isActive = isHome
+							? currentPath === "/" || currentPath === ""
+							: currentPath.startsWith(link.url);
+						return (
+							<li class="nav-item">
+								<a
+									href={link.url}
+									class:list={["nav-link", { active: isActive }]}
+									aria-current={isActive ? "page" : undefined}>
+									<span class="link-bracket link-bracket-left">[</span>
+									<span class="link-label">{link.label}</span>
+									<span class="link-bracket link-bracket-right">]</span>
+									<span class="active-indicator" />
+								</a>
+							</li>
+						);
+					})
+				}
+			</ul>
 
-      <!-- Right: Social Media Links & Theme Toggle -->
-      <div class="nav-socials">
-        {
-          iconLinks.map((social) => (
-            <a
-              href={social.url}
-              class="social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              title={social.label}
-              aria-label={social.label}
-            >
-              <Icon name={social.icon} size={18} />
-            </a>
-          ))
-        }
-        <ThemeToggle />
-      </div>
-    </div>
-  </nav>
+			<!-- Right: Social Media Links & Theme Toggle -->
+			<div class="nav-socials">
+				{
+					iconLinks.map((social) => (
+						<a
+							href={social.url}
+							class="social-link"
+							target="_blank"
+							rel="noopener noreferrer"
+							title={social.label}
+							aria-label={social.label}>
+							<Icon name={social.icon} size={18} />
+						</a>
+					))
+				}
+				<ThemeToggle />
+			</div>
+		</div>
+	</nav>
 </header>
 
 <script>
-  function setupNavToggle() {
-    const toggleButton = document.getElementById("menu-toggle");
-    const navMenu = document.getElementById("nav-menu");
+	function setupNavToggle() {
+		const toggleButton = document.getElementById("menu-toggle");
+		const navMenu = document.getElementById("nav-menu");
 
-    if (!toggleButton || !navMenu) return;
+		if (!toggleButton || !navMenu) return;
 
-    toggleButton.addEventListener("click", () => {
-      const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
-      toggleButton.setAttribute("aria-expanded", String(!isExpanded));
-      navMenu.classList.toggle("is-open");
-    });
+		toggleButton.addEventListener("click", () => {
+			const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
+			toggleButton.setAttribute("aria-expanded", String(!isExpanded));
+			navMenu.classList.toggle("is-open");
+		});
 
-    // Close menu when clicking outside
-    document.addEventListener("click", (event) => {
-      if (
-        navMenu.classList.contains("is-open") &&
-        !navMenu.contains(event.target as Node) &&
-        !toggleButton.contains(event.target as Node)
-      ) {
-        navMenu.classList.remove("is-open");
-        toggleButton.setAttribute("aria-expanded", "false");
-      }
-    });
+		// Close menu when clicking outside
+		document.addEventListener("click", (event) => {
+			if (
+				navMenu.classList.contains("is-open") &&
+				!navMenu.contains(event.target as Node) &&
+				!toggleButton.contains(event.target as Node)
+			) {
+				navMenu.classList.remove("is-open");
+				toggleButton.setAttribute("aria-expanded", "false");
+			}
+		});
 
-    // Close menu on resize back to desktop
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 768 && navMenu.classList.contains("is-open")) {
-        navMenu.classList.remove("is-open");
-        toggleButton.setAttribute("aria-expanded", "false");
-      }
-    });
-  }
+		// Close menu on resize back to desktop
+		window.addEventListener("resize", () => {
+			if (window.innerWidth > 768 && navMenu.classList.contains("is-open")) {
+				navMenu.classList.remove("is-open");
+				toggleButton.setAttribute("aria-expanded", "false");
+			}
+		});
+	}
 
-  // Setup on initial load and view transitions if enabled
-  setupNavToggle();
-  document.addEventListener("astro:page-load", setupNavToggle);
+	// Setup on initial load and view transitions if enabled
+	setupNavToggle();
+	document.addEventListener("astro:page-load", setupNavToggle);
 </script>
 
 <style lang="scss">
-  @use "../styles/theme.scss" as *;
+	@use "../styles/theme.scss" as *;
 
-  .portfolio-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    width: 100%;
-    background: rgba(26, 28, 36, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 4px 20px var(--shadow-color);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+	.portfolio-header {
+		position: sticky;
+		top: 0;
+		z-index: 1000;
+		width: 100%;
+		background: rgba(26, 28, 36, 0.85);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		border-bottom: 1px solid var(--border-color);
+		box-shadow: 0 4px 20px var(--shadow-color);
+		transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(
-        90deg,
-        transparent 0%,
-        var(--accent-cyan) 30%,
-        var(--accent-blue) 70%,
-        transparent 100%
-      );
-      opacity: 0.6;
-    }
-  }
+		&::after {
+			content: "";
+			position: absolute;
+			bottom: -1px;
+			left: 0;
+			width: 100%;
+			height: 1px;
+			background: linear-gradient(
+				90deg,
+				transparent 0%,
+				var(--accent-cyan) 30%,
+				var(--accent-blue) 70%,
+				transparent 100%
+			);
+			opacity: 0.6;
+		}
+	}
 
-  .portfolio-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0.75rem 1.5rem;
-    position: relative;
-    box-sizing: border-box;
-  }
+	.portfolio-nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0.75rem 1.5rem;
+		position: relative;
+		box-sizing: border-box;
+	}
 
-  /* --- BRAND SECTION (LEFT) --- */
-  .nav-brand {
-    display: flex;
-    align-items: center;
-    z-index: 1001;
+	/* --- BRAND SECTION (LEFT) --- */
+	.nav-brand {
+		display: flex;
+		align-items: center;
+		z-index: 1001;
 
-    .brand-link {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-      color: var(--text-primary);
-      transition: transform 0.2s ease;
+		.brand-link {
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+			text-decoration: none;
+			color: var(--text-primary);
+			transition: transform 0.2s ease;
 
-      &:hover {
-        .icon-wrapper {
-          border-color: var(--accent-cyan);
-          box-shadow: 0 0 12px var(--border-glow);
-          color: var(--accent-cyan);
-        }
+			&:hover {
+				.icon-wrapper {
+					border-color: var(--accent-cyan);
+					box-shadow: 0 0 12px var(--border-glow);
+					color: var(--accent-cyan);
+				}
 
-        .brand-name {
-          color: var(--accent-cyan);
-          text-shadow: 0 0 8px var(--border-glow);
-        }
+				.brand-name {
+					color: var(--accent-cyan);
+					text-shadow: 0 0 8px var(--border-glow);
+				}
 
-        .brand-sub {
-          color: var(--text-primary);
-        }
-      }
-    }
+				.brand-sub {
+					color: var(--text-primary);
+				}
+			}
+		}
 
-    .icon-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      background: var(--bg-secondary);
-      color: var(--accent-cyan);
-      clip-path: polygon(
-        0 0,
-        calc(100% - 6px) 0,
-        100% 6px,
-        100% 100%,
-        6px 100%,
-        0 calc(100% - 6px)
-      );
-      transition: all 0.25s ease;
-    }
+		.icon-wrapper {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 36px;
+			height: 36px;
+			border: 1px solid var(--border-color);
+			border-radius: 4px;
+			background: var(--bg-secondary);
+			color: var(--accent-cyan);
+			clip-path: polygon(
+				0 0,
+				calc(100% - 6px) 0,
+				100% 6px,
+				100% 100%,
+				6px 100%,
+				0 calc(100% - 6px)
+			);
+			transition: all 0.25s ease;
+		}
 
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-    }
+		.brand-text {
+			display: flex;
+			flex-direction: column;
+		}
 
-    .brand-name {
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-primary);
-      transition:
-        color 0.25s ease,
-        text-shadow 0.25s ease;
-    }
+		.brand-name {
+			font-size: 1.05rem;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: var(--text-primary);
+			transition:
+				color 0.25s ease,
+				text-shadow 0.25s ease;
+		}
 
-    .brand-sub {
-      font-family: $font-mono;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      color: var(--accent-metallic);
-      transition: color 0.25s ease;
-    }
-  }
+		.brand-sub {
+			font-family: $font-mono;
+			font-size: 0.65rem;
+			letter-spacing: 0.15em;
+			color: var(--accent-metallic);
+			transition: color 0.25s ease;
+		}
+	}
 
-  /* --- MENU TOGGLE (MOBILE HAMBURGER) --- */
-  .menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    width: 38px;
-    height: 38px;
-    padding: 6px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    cursor: pointer;
-    z-index: 1001;
-    transition: all 0.25s ease;
+	/* --- MENU TOGGLE (MOBILE HAMBURGER) --- */
+	.menu-toggle {
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		gap: 5px;
+		width: 38px;
+		height: 38px;
+		padding: 6px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border-color);
+		border-radius: 4px;
+		cursor: pointer;
+		z-index: 1001;
+		transition: all 0.25s ease;
 
-    .toggle-bar {
-      width: 100%;
-      height: 2px;
-      background-color: var(--accent-cyan);
-      border-radius: 1px;
-      transition:
-        transform 0.3s ease,
-        opacity 0.3s ease;
-      transform-origin: center;
-    }
+		.toggle-bar {
+			width: 100%;
+			height: 2px;
+			background-color: var(--accent-cyan);
+			border-radius: 1px;
+			transition:
+				transform 0.3s ease,
+				opacity 0.3s ease;
+			transform-origin: center;
+		}
 
-    &:hover {
-      border-color: var(--accent-cyan);
-      box-shadow: 0 0 10px var(--border-glow);
-    }
+		&:hover {
+			border-color: var(--accent-cyan);
+			box-shadow: 0 0 10px var(--border-glow);
+		}
 
-    &[aria-expanded="true"] {
-      .toggle-bar:nth-child(1) {
-        transform: translateY(7px) rotate(45deg);
-      }
-      .toggle-bar:nth-child(2) {
-        opacity: 0;
-      }
-      .toggle-bar:nth-child(3) {
-        transform: translateY(-7px) rotate(-45deg);
-      }
-    }
-  }
+		&[aria-expanded="true"] {
+			.toggle-bar:nth-child(1) {
+				transform: translateY(7px) rotate(45deg);
+			}
+			.toggle-bar:nth-child(2) {
+				opacity: 0;
+			}
+			.toggle-bar:nth-child(3) {
+				transform: translateY(-7px) rotate(-45deg);
+			}
+		}
+	}
 
-  /* --- NAV MENU CONTAINER (MIDDLE + RIGHT) --- */
-  .nav-menu {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex: 1;
-    margin-left: 2rem;
-  }
+	/* --- NAV MENU CONTAINER (MIDDLE + RIGHT) --- */
+	.nav-menu {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex: 1;
+		margin-left: 2rem;
+	}
 
-  /* --- NAVIGATION LINKS (MIDDLE) --- */
-  .nav-links {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    list-style: none;
-    margin: 0 auto;
-    padding: 0;
-    gap: 0.5rem;
-  }
+	/* --- NAVIGATION LINKS (MIDDLE) --- */
+	.nav-links {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		list-style: none;
+		margin: 0 auto;
+		padding: 0;
+		gap: 0.5rem;
+	}
 
-  .nav-item {
-    position: relative;
-  }
+	.nav-item {
+		position: relative;
+	}
 
-  .nav-link {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.5rem 0.85rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    font-family: $font-sans;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--text-secondary);
-    position: relative;
-    transition: all 0.2s ease;
+	.nav-link {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.5rem 0.85rem;
+		font-size: 0.85rem;
+		font-weight: 600;
+		font-family: $font-sans;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		text-decoration: none;
+		color: var(--text-secondary);
+		position: relative;
+		transition: all 0.2s ease;
 
-    .link-bracket {
-      font-family: $font-mono;
-      color: var(--accent-cyan);
-      opacity: 0;
-      transform: scale(0.8);
-      transition:
-        opacity 0.2s ease,
-        transform 0.2s ease;
-    }
+		.link-bracket {
+			font-family: $font-mono;
+			color: var(--accent-cyan);
+			opacity: 0;
+			transform: scale(0.8);
+			transition:
+				opacity 0.2s ease,
+				transform 0.2s ease;
+		}
 
-    .link-bracket-left {
-      margin-right: 0.25rem;
-      transform: translateX(4px);
-    }
+		.link-bracket-left {
+			margin-right: 0.25rem;
+			transform: translateX(4px);
+		}
 
-    .link-bracket-right {
-      margin-left: 0.25rem;
-      transform: translateX(-4px);
-    }
+		.link-bracket-right {
+			margin-left: 0.25rem;
+			transform: translateX(-4px);
+		}
 
-    .active-indicator {
-      position: absolute;
-      bottom: 0;
-      left: 15%;
-      right: 15%;
-      height: 2px;
-      background: var(--accent-cyan);
-      box-shadow: 0 0 8px var(--accent-cyan);
-      opacity: 0;
-      transform: scaleX(0);
-      transition:
-        opacity 0.25s ease,
-        transform 0.25s ease;
-    }
+		.active-indicator {
+			position: absolute;
+			bottom: 0;
+			left: 15%;
+			right: 15%;
+			height: 2px;
+			background: var(--accent-cyan);
+			box-shadow: 0 0 8px var(--accent-cyan);
+			opacity: 0;
+			transform: scaleX(0);
+			transition:
+				opacity 0.25s ease,
+				transform 0.25s ease;
+		}
 
-    &:hover {
-      color: var(--text-primary);
+		&:hover {
+			color: var(--text-primary);
 
-      .link-bracket {
-        opacity: 0.75;
-        transform: translateX(0);
-      }
-    }
+			.link-bracket {
+				opacity: 0.75;
+				transform: translateX(0);
+			}
+		}
 
-    &.active {
-      color: var(--accent-cyan);
-      text-shadow: 0 0 8px var(--border-glow);
+		&.active {
+			color: var(--accent-cyan);
+			text-shadow: 0 0 8px var(--border-glow);
 
-      .link-bracket {
-        opacity: 1;
-        transform: translateX(0);
-      }
+			.link-bracket {
+				opacity: 1;
+				transform: translateX(0);
+			}
 
-      .active-indicator {
-        opacity: 1;
-        transform: scaleX(1);
-      }
-    }
-  }
+			.active-indicator {
+				opacity: 1;
+				transform: scaleX(1);
+			}
+		}
+	}
 
-  /* --- SOCIAL MEDIA LINKS (RIGHT) --- */
-  .nav-socials {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+	/* --- SOCIAL MEDIA LINKS (RIGHT) --- */
+	.nav-socials {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
 
-    .social-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 34px;
-      height: 34px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      color: var(--accent-metallic);
-      text-decoration: none;
-      clip-path: polygon(
-        0 0,
-        calc(100% - 5px) 0,
-        100% 5px,
-        100% 100%,
-        5px 100%,
-        0 calc(100% - 5px)
-      );
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+		.social-link {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 34px;
+			height: 34px;
+			background: var(--bg-secondary);
+			border: 1px solid var(--border-color);
+			border-radius: 4px;
+			color: var(--accent-metallic);
+			text-decoration: none;
+			clip-path: polygon(
+				0 0,
+				calc(100% - 5px) 0,
+				100% 5px,
+				100% 100%,
+				5px 100%,
+				0 calc(100% - 5px)
+			);
+			transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 
-      &:hover {
-        color: var(--accent-cyan);
-        border-color: var(--accent-cyan);
-        box-shadow: 0 0 10px var(--border-glow);
-        transform: translateY(-2px);
-      }
-    }
-  }
+			&:hover {
+				color: var(--accent-cyan);
+				border-color: var(--accent-cyan);
+				box-shadow: 0 0 10px var(--border-glow);
+				transform: translateY(-2px);
+			}
+		}
+	}
 
-  /* --- RESPONSIVE / MOBILE STYLING --- */
-  @media (max-width: 768px) {
-    .menu-toggle {
-      display: flex;
-    }
+	/* --- RESPONSIVE / MOBILE STYLING --- */
+	@media (max-width: 768px) {
+		.menu-toggle {
+			display: flex;
+		}
 
-    .nav-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      flex-direction: column;
-      background: rgba(26, 28, 36, 0.96);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-color);
-      box-shadow: 0 12px 24px var(--shadow-color);
-      padding: 1.5rem;
-      margin-left: 0;
-      gap: 1.5rem;
-      display: none;
+		.nav-menu {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			flex-direction: column;
+			background: rgba(26, 28, 36, 0.96);
+			backdrop-filter: blur(16px);
+			-webkit-backdrop-filter: blur(16px);
+			border-bottom: 1px solid var(--border-color);
+			box-shadow: 0 12px 24px var(--shadow-color);
+			padding: 1.5rem;
+			margin-left: 0;
+			gap: 1.5rem;
+			display: none;
 
-      &.is-open {
-        display: flex;
-        animation: navSlideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      }
-    }
+			&.is-open {
+				display: flex;
+				animation: navSlideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+			}
+		}
 
-    .nav-links {
-      flex-direction: column;
-      width: 100%;
-      gap: 0.5rem;
+		.nav-links {
+			flex-direction: column;
+			width: 100%;
+			gap: 0.5rem;
 
-      .nav-item {
-        width: 100%;
-      }
+			.nav-item {
+				width: 100%;
+			}
 
-      .nav-link {
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        padding: 0.75rem 1rem;
-        background: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        border-radius: 4px;
-        box-sizing: border-box;
+			.nav-link {
+				display: flex;
+				width: 100%;
+				justify-content: center;
+				padding: 0.75rem 1rem;
+				background: var(--bg-secondary);
+				border: 1px solid var(--border-color);
+				border-radius: 4px;
+				box-sizing: border-box;
 
-        .active-indicator {
-          bottom: 0;
-          left: 0;
-          right: 0;
-        }
+				.active-indicator {
+					bottom: 0;
+					left: 0;
+					right: 0;
+				}
 
-        &.active {
-          border-color: var(--accent-cyan);
-          background: rgba(0, 210, 255, 0.05);
-        }
-      }
-    }
+				&.active {
+					border-color: var(--accent-cyan);
+					background: rgba(0, 210, 255, 0.05);
+				}
+			}
+		}
 
-    .nav-socials {
-      justify-content: center;
-      width: 100%;
-      padding-top: 0.5rem;
-      border-top: 1px dashed var(--border-color);
-    }
-  }
+		.nav-socials {
+			justify-content: center;
+			width: 100%;
+			padding-top: 0.5rem;
+			border-top: 1px dashed var(--border-color);
+		}
+	}
 
-  @keyframes navSlideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+	@keyframes navSlideDown {
+		from {
+			opacity: 0;
+			transform: translateY(-10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
 </style>
