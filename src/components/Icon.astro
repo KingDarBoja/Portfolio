@@ -1,0 +1,41 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { iconPaths, type IconName, type IconData } from "./IconPaths";
+
+export type { IconName } from "./IconPaths";
+
+interface Props extends HTMLAttributes<"svg"> {
+  name: IconName;
+  size?: number | string;
+}
+
+const {
+  name,
+  size = 24,
+  width = size,
+  height = size,
+  class: className,
+  ...props
+} = Astro.props;
+
+const icon: IconData = iconPaths[name];
+---
+
+{
+  icon && (
+    <svg
+      viewBox={icon.viewBox || "0 0 24 24"}
+      width={width}
+      height={height}
+      fill={icon.fill || "currentColor"}
+      stroke={icon.stroke}
+      stroke-width={icon.strokeWidth}
+      stroke-linecap={icon.strokeLinecap}
+      stroke-linejoin={icon.strokeLinejoin}
+      class={className}
+      aria-hidden="true"
+      {...props}
+      set:html={icon.paths}
+    />
+  )
+}

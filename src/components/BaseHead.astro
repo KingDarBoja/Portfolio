@@ -1,16 +1,17 @@
 ---
-// Import the global.css file here so that it is included on
+// Import the global.scss file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import '../styles/global.css';
-import type { ImageMetadata } from 'astro';
-import FallbackImage from '../assets/blog-placeholder-1.jpg';
-import { SITE_TITLE } from '../consts';
-import { Font } from 'astro:assets';
+import "../styles/global.scss";
+
+import type { ImageMetadata } from "astro";
+import FallbackImage from "../assets/blog-placeholder-1.jpg";
+import { SITE_TITLE } from "../consts";
+import { Font } from "astro:assets";
 
 interface Props {
-	title: string;
-	description: string;
-	image?: ImageMetadata;
+  title: string;
+  description: string;
+  image?: ImageMetadata;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -25,10 +26,10 @@ const { title, description, image = FallbackImage } = Astro.props;
 <link rel="icon" href="/favicon.ico" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
-	rel="alternate"
-	type="application/rss+xml"
-	title={SITE_TITLE}
-	href={new URL('rss.xml', Astro.site)}
+  rel="alternate"
+  type="application/rss+xml"
+  title={SITE_TITLE}
+  href={new URL("rss.xml", Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
 
@@ -50,3 +51,23 @@ const { title, description, image = FallbackImage } = Astro.props;
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
+
+<!-- Theme Initialization (prevents flash of wrong theme) -->
+<script is:inline>
+  const theme = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+      return "light";
+    }
+    return "dark";
+  })();
+
+  if (theme === "light") {
+    document.documentElement.setAttribute("data-theme", "light");
+  } else {
+    document.documentElement.setAttribute("data-theme", "dark");
+  }
+  window.localStorage.setItem("theme", theme);
+</script>
