@@ -6,11 +6,8 @@ $font-sans:
 	"Segoe UI",
 	Roboto,
 	sans-serif;
-$font-mono:
-	"Fira Code",
-	JetBrains Mono,
-	Consolas,
-	monospace;
+// Uses the CSS variable injected by Astro's Font component (<Font cssVariable="--font-jetbrainsmono">)
+$font-mono: var(--font-jetbrainsmono), Consolas, monospace;
 
 // Base CSS Custom Properties for Light & Dark Mode switching
 :root,

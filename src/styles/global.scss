@@ -7,7 +7,7 @@
 }
 
 body {
-	font-family: $font-sans;
+	font-family: var(--font-outfit), system-ui, sans-serif;
 	background-color: var(--bg-primary);
 	color: var(--text-primary);
 	margin: 0;
@@ -153,7 +153,7 @@ img {
 }
 
 code {
-	font-family: $font-mono;
+	font-family: var(--font-jetbrainsmono), Consolas, monospace;
 	padding: 0.2em 0.4em;
 	background-color: var(--code-bg);
 	color: var(--code-text);
@@ -172,7 +172,7 @@ pre {
 
 	> code {
 		all: unset;
-		font-family: $font-mono;
+		font-family: var(--font-jetbrainsmono), Consolas, monospace;
 		color: var(--code-text);
 		font-size: 0.9em;
 	}
