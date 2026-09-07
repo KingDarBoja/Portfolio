@@ -3,6 +3,8 @@ import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Nav from "../components/Nav.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import { Image } from "astro:assets";
+import profilePhoto from "../assets/mbp-profile-photo.jpg";
 ---
 
 <!doctype html>
@@ -13,45 +15,111 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 	<body>
 		<Nav />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template.
-				This template serves as a lightweight, minimally-styled starting point for anyone looking
-				to build a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>
-					Edit the site navigation in <code>src/components/Nav.astro</code>
-				</li>
-				<li>
-					Add your name to the footer in <code>src/components/Footer.astro</code>
-				</li>
-				<li>
-					Check out the included blog posts in <code>src/content/blog/</code>
-				</li>
-				<li>
-					Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code>
-				</li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<h2>Hello, I'm Manuel Bojato</h2>
+
+			<div class="intro-layout">
+				<div class="intro-photo-wrapper">
+					<Image
+						src={profilePhoto}
+						alt="Manuel Bojato"
+						class="profile-photo"
+						width={320}
+						height={400}
+					/>
+				</div>
+
+				<div class="intro-content">
+					<p class="text-justify">
+						Full-Stack Software Engineer with 8+ years of experience building
+						applications and cloud-native solutions using mainly JavaScript / TypeScript
+						stack. I have delivered several full stack solutions for clients in
+						different industries including Climate FinTech, healthcare, corporative and
+						logistics sectors.
+					</p>
+
+					<p class="text-justify">
+						I'm a creative and open-minded person who is always looking for new
+						challenges and learning opportunities. Also I consider myself a passionate
+						about technology and innovation as well as a proactive learner.
+					</p>
+
+					<p class="text-justify">
+						I am also actively expanding my expertise in modern data engineering and
+						data science methodologies to bring deeper analytical capabilities and
+						data-driven insights into my development workflow.
+					</p>
+				</div>
+			</div>
+
+			<section class="section-container">
+				<h3 class="section-title">Languages</h3>
+
+				<div class="language-list">
+					<span class="tag-pill">Spanish (Native)</span>
+					<span class="tag-pill">English (C1)</span>
+					<span class="tag-pill">Italian (A1)</span>
+				</div>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style lang="scss">
+	.intro-layout {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		align-items: center;
+		margin-top: 1rem;
+
+		@media (min-width: 768px) {
+			flex-direction: row;
+			align-items: flex-start;
+		}
+	}
+
+	.intro-content {
+		flex: 1;
+
+		p {
+			line-height: 1.65;
+		}
+	}
+
+	.intro-photo-wrapper {
+		flex-shrink: 0;
+		width: 100%;
+		max-width: 240px;
+
+		@media (min-width: 768px) {
+			width: 240px;
+		}
+
+		.profile-photo {
+			width: 100%;
+			height: auto;
+			aspect-ratio: 4 / 5;
+			object-fit: cover;
+			border-radius: 12px;
+			border: 1px solid var(--border-color);
+			box-shadow: 0 4px 16px var(--shadow-color);
+			display: block;
+			transition:
+				border-color 0.2s ease,
+				box-shadow 0.2s ease;
+
+			&:hover {
+				border-color: var(--accent-cyan);
+				box-shadow: 0 0 16px var(--border-glow);
+			}
+		}
+	}
+
+	.language-list {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+</style>
