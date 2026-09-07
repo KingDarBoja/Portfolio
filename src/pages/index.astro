@@ -1,69 +1,57 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Footer from "../components/Footer.astro";
-import Nav from "../components/Nav.astro";
+import PageLayout from "../layouts/PageLayout.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import { Image } from "astro:assets";
 import profilePhoto from "../assets/mbp-profile-photo.jpg";
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Nav />
-		<main>
-			<h2>Hello, I'm Manuel Bojato</h2>
+<PageLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<h2>Hello, I'm Manuel Bojato</h2>
 
-			<div class="intro-layout">
-				<div class="intro-photo-wrapper">
-					<Image
-						src={profilePhoto}
-						alt="Manuel Bojato"
-						class="profile-photo"
-						width={320}
-						height={400}
-					/>
-				</div>
+	<div class="intro-layout">
+		<div class="intro-photo-wrapper">
+			<Image
+				src={profilePhoto}
+				alt="Manuel Bojato"
+				class="profile-photo"
+				width={320}
+				height={400}
+			/>
+		</div>
 
-				<div class="intro-content">
-					<p class="text-justify">
-						Full-Stack Software Engineer with 8+ years of experience building
-						applications and cloud-native solutions using mainly JavaScript / TypeScript
-						stack. I have delivered several full stack solutions for clients in
-						different industries including Climate FinTech, healthcare, corporative and
-						logistics sectors.
-					</p>
+		<div class="intro-content">
+			<p class="text-justify">
+				Full-Stack Software Engineer with 8+ years of experience building
+				applications and cloud-native solutions using mainly JavaScript / TypeScript
+				stack. I have delivered several full stack solutions for clients in
+				different industries including Climate FinTech, healthcare, corporative and
+				logistics sectors.
+			</p>
 
-					<p class="text-justify">
-						I'm a creative and open-minded person who is always looking for new
-						challenges and learning opportunities. Also I consider myself a passionate
-						about technology and innovation as well as a proactive learner.
-					</p>
+			<p class="text-justify">
+				I'm a creative and open-minded person who is always looking for new
+				challenges and learning opportunities. Also I consider myself a passionate
+				about technology and innovation as well as a proactive learner.
+			</p>
 
-					<p class="text-justify">
-						I am also actively expanding my expertise in modern data engineering and
-						data science methodologies to bring deeper analytical capabilities and
-						data-driven insights into my development workflow.
-					</p>
-				</div>
-			</div>
+			<p class="text-justify">
+				I am also actively expanding my expertise in modern data engineering and
+				data science methodologies to bring deeper analytical capabilities and
+				data-driven insights into my development workflow.
+			</p>
+		</div>
+	</div>
 
-			<section class="section-container">
-				<h3 class="section-title">Languages</h3>
+	<section class="section-container">
+		<h3 class="section-title">Languages</h3>
 
-				<div class="language-list">
-					<span class="tag-pill">Spanish (Native)</span>
-					<span class="tag-pill">English (C1)</span>
-					<span class="tag-pill">Italian (A1)</span>
-				</div>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+		<div class="language-list">
+			<span class="tag-pill">Spanish (Native)</span>
+			<span class="tag-pill">English (C1)</span>
+			<span class="tag-pill">Italian (A1)</span>
+		</div>
+	</section>
+</PageLayout>
 
 <style lang="scss">
 	.intro-layout {
