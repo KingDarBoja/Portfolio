@@ -59,7 +59,7 @@ const currentPath = Astro.url.pathname.replace(import.meta.env.BASE_URL, "") || 
 				</span>
 				<span class="brand-text">
 					<span class="brand-name">Manuel Bojato</span>
-					<span class="brand-sub">SECTOR // DEV</span>
+					<span class="brand-sub">Full Stack Engineer</span>
 				</span>
 			</a>
 		</div>
@@ -263,6 +263,7 @@ const currentPath = Astro.url.pathname.replace(import.meta.env.BASE_URL, "") || 
 		.brand-text {
 			display: flex;
 			flex-direction: column;
+			line-height: normal;
 		}
 
 		.brand-name {
@@ -279,6 +280,7 @@ const currentPath = Astro.url.pathname.replace(import.meta.env.BASE_URL, "") || 
 		.brand-sub {
 			font-family: var(--font-jetbrainsmono), Consolas, monospace;
 			font-size: 0.65rem;
+			font-weight: 500;
 			letter-spacing: 0.15em;
 			color: var(--accent-metallic);
 			transition: color 0.25s ease;
