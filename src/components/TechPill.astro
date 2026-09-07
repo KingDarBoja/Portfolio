@@ -1,0 +1,345 @@
+---
+import angularSvg from "../assets/icons/angular.svg?raw";
+import astroSvg from "../assets/icons/astro.svg?raw";
+import firebaseSvg from "../assets/icons/firebase.svg?raw";
+import javascriptSvg from "../assets/icons/javascript.svg?raw";
+import ngrxSvg from "../assets/icons/ngrx.svg?raw";
+import nodedotjsSvg from "../assets/icons/nodedotjs.svg?raw";
+import prettierSvg from "../assets/icons/prettier.svg?raw";
+import reactSvg from "../assets/icons/react.svg?raw";
+import reactivexSvg from "../assets/icons/reactivex.svg?raw";
+import typescriptSvg from "../assets/icons/typescript.svg?raw";
+
+type TechCategory =
+	| "Languages"
+	| "Frontend"
+	| "Backend"
+	| "DevOps"
+	| "Cloud"
+	| "Databases"
+	| "Testing"
+	| "Tooling & Linters"
+	| "Environments";
+
+interface Technology {
+	category: TechCategory;
+	label: string;
+	/** Raw SVG code or path */
+	icon_raw?: string;
+	/** Background color */
+	bg_color?: string;
+}
+
+export type TechnologyId =
+	// Languages
+	| "typescript"
+	| "javascript"
+	| "python"
+	| "html"
+	| "css"
+	| "scss"
+	| "sql"
+	// Front-End
+	| "angular"
+	| "react"
+	| "astro"
+	| "vue"
+	| "rxjs"
+	| "ngrx"
+	| "redux"
+	| "tailwind"
+	| "bootstrap"
+	| "material"
+	// Back-End
+	| "nodejs"
+	| "express"
+	| "nest"
+	| "fastapi"
+	| "flask"
+	| "graphql"
+	| "apollo"
+	| "pandas"
+	| "seaborn"
+	// DevOps & Cloud
+	| "docker"
+	| "github-actions"
+	| "gitlab"
+	| "git"
+	| "aws"
+	| "gcp"
+	| "nx"
+	// Databases
+	| "postgresql"
+	| "mongodb"
+	| "firestore"
+	| "firebase"
+	| "dynamodb"
+	// Tooling
+	| "prettier"
+	| "eslint"
+	| "antigravity"
+	| "postman"
+	| "jira"
+	// Testing
+	| "jest"
+	| "pytest";
+
+const technologies: Partial<Record<TechnologyId, Technology>> = {
+	angular: {
+		category: "Frontend",
+		label: "Angular",
+		icon_raw: angularSvg,
+		bg_color: "#DD0031",
+	},
+	rxjs: {
+		category: "Frontend",
+		label: "RxJS",
+		icon_raw: reactivexSvg,
+		bg_color: "#B7178C",
+	},
+	ngrx: {
+		category: "Frontend",
+		label: "NgRx",
+		icon_raw: ngrxSvg,
+		bg_color: "#BA2BD2",
+	},
+	javascript: {
+		category: "Languages",
+		label: "JavaScript",
+		icon_raw: javascriptSvg,
+		bg_color: "#F7DF1E",
+	},
+	typescript: {
+		category: "Languages",
+		label: "TypeScript",
+		icon_raw: typescriptSvg,
+		bg_color: "#3178C6",
+	},
+	react: {
+		category: "Frontend",
+		label: "React",
+		icon_raw: reactSvg,
+		bg_color: "#61DAFB",
+	},
+	astro: {
+		category: "Frontend",
+		label: "Astro",
+		icon_raw: astroSvg,
+		bg_color: "#BC52EE",
+	},
+	nodejs: {
+		category: "Backend",
+		label: "Node.js",
+		icon_raw: nodedotjsSvg,
+		bg_color: "#5FA04E",
+	},
+	firebase: {
+		category: "Databases",
+		label: "Firebase",
+		icon_raw: firebaseSvg,
+		bg_color: "#FFCA28",
+	},
+	prettier: {
+		category: "Tooling & Linters",
+		label: "Prettier",
+		icon_raw: prettierSvg,
+		bg_color: "#F7B93E",
+	},
+	python: {
+		category: "Languages",
+		label: "Python",
+		bg_color: "#3776AB",
+	},
+	docker: {
+		category: "DevOps",
+		label: "Docker",
+		bg_color: "#2496ED",
+	},
+	aws: {
+		category: "Cloud",
+		label: "AWS",
+		bg_color: "#FF9900",
+	},
+	gcp: {
+		category: "Cloud",
+		label: "GCP",
+		bg_color: "#4285F4",
+	},
+	postgresql: {
+		category: "Databases",
+		label: "PostgreSQL",
+		bg_color: "#4169E1",
+	},
+	mongodb: {
+		category: "Databases",
+		label: "MongoDB",
+		bg_color: "#47A248",
+	},
+	"github-actions": {
+		category: "DevOps",
+		label: "GitHub Actions",
+		bg_color: "#2088FF",
+	},
+	nx: {
+		category: "Tooling & Linters",
+		label: "Nx",
+		bg_color: "#143055",
+	},
+	eslint: {
+		category: "Tooling & Linters",
+		label: "ESLint",
+		bg_color: "#4B32C3",
+	},
+	antigravity: {
+		category: "Tooling & Linters",
+		label: "Antigravity",
+		bg_color: "#6366F1",
+	},
+	bootstrap: {
+		category: "Frontend",
+		label: "Bootstrap",
+		bg_color: "#7952B3",
+	},
+	material: {
+		category: "Frontend",
+		label: "Angular Material",
+		bg_color: "#007FFF",
+	},
+	flask: {
+		category: "Backend",
+		label: "Flask",
+		bg_color: "#2C3E50",
+	},
+	graphql: {
+		category: "Backend",
+		label: "GraphQL",
+		bg_color: "#E10098",
+	},
+	apollo: {
+		category: "Frontend",
+		label: "Apollo GraphQL",
+		bg_color: "#311C87",
+	},
+	pandas: {
+		category: "Backend",
+		label: "Pandas",
+		bg_color: "#150458",
+	},
+	seaborn: {
+		category: "Backend",
+		label: "Seaborn",
+		bg_color: "#4C72B0",
+	},
+	gitlab: {
+		category: "DevOps",
+		label: "GitLab",
+		bg_color: "#FC6D26",
+	},
+	dynamodb: {
+		category: "Databases",
+		label: "DynamoDB",
+		bg_color: "#4053D6",
+	},
+	postman: {
+		category: "Tooling & Linters",
+		label: "Postman",
+		bg_color: "#FF6C37",
+	},
+	jira: {
+		category: "Tooling & Linters",
+		label: "Jira",
+		bg_color: "#0052CC",
+	},
+	pytest: {
+		category: "Testing",
+		label: "pytest",
+		bg_color: "#0A9EDC",
+	},
+	jest: {
+		category: "Testing",
+		label: "Jest",
+		bg_color: "#C21325",
+	},
+};
+
+export interface Props {
+	name: TechnologyId | (string & {});
+}
+
+const { name } = Astro.props;
+const techInfo = technologies[name as TechnologyId];
+const label = techInfo?.label || name;
+const bgColor = techInfo?.bg_color;
+const iconRaw = techInfo?.icon_raw;
+---
+
+<span class="tech-pill" style={bgColor ? `--pill-bg: ${bgColor}` : undefined}>
+	{iconRaw && <span class="pill-icon" set:html={iconRaw} />}
+	<span class="pill-label">{label}</span>
+</span>
+
+<style lang="scss">
+	.tech-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		font-family: var(--font-jetbrainsmono), Consolas, monospace;
+		font-size: 0.6rem;
+		line-height: 1.2;
+		font-weight: 600;
+		letter-spacing: 0.03em;
+		border-radius: 5px;
+		padding: 0.18rem 0.45rem;
+		background: var(--pill-bg, var(--bg-secondary));
+		color: #ffffff;
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		box-shadow: 0 2px 6px var(--shadow-color);
+		transition: all 0.2s ease;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+
+		// If pill is bright yellow like JavaScript, adjust text color for contrast
+		&:has(.pill-label) {
+			text-decoration: none;
+		}
+
+		.pill-icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 11px;
+			height: 11px;
+			flex-shrink: 0;
+
+			:global(svg) {
+				width: 100%;
+				height: 100%;
+				fill: currentColor;
+				display: block;
+			}
+		}
+
+		.pill-label {
+			line-height: 1.2;
+			white-space: nowrap;
+		}
+
+		&:hover {
+			border-color: rgba(255, 255, 255, 0.4);
+			box-shadow: 0 0 10px var(--border-glow);
+			transform: translateY(-1px);
+			filter: brightness(1.1);
+		}
+	}
+
+	// Specific color tuning for low-contrast backgrounds like JavaScript yellow
+	.tech-pill[style*="#F7DF1E"],
+	.tech-pill[style*="#FFCA28"],
+	.tech-pill[style*="#F7B93E"] {
+		color: #1a1c24;
+		text-shadow: none;
+
+		.pill-icon :global(svg) {
+			fill: #1a1c24;
+		}
+	}
+</style>

@@ -1,0 +1,375 @@
+---
+import TechPill, { type TechnologyId } from "./TechPill.astro";
+import Icon from "./Icon.astro";
+
+export interface ProjectExperience {
+	title: string;
+	role?: string;
+	period?: string;
+	description?: string;
+	keypoints?: string[];
+	technologies?: (TechnologyId | string)[];
+}
+
+export interface Props {
+	company: string;
+	period?: string;
+	location?: string;
+	role?: string;
+	description?: string;
+	keypoints?: string[];
+	technologies?: (TechnologyId | string)[];
+	projects?: ProjectExperience[];
+}
+
+const {
+	company,
+	period,
+	location,
+	role,
+	description,
+	keypoints = [],
+	technologies = [],
+	projects = [],
+} = Astro.props;
+
+const hasProjects = projects && projects.length > 0;
+---
+
+<div class="experience-card">
+	<!-- Card Header: Role, Company & Duration/Location -->
+	<header class="card-header">
+		{role && <h3 class="role-title">{role}</h3>}
+		<h4 class="company-name">{company}</h4>
+
+		{(period || location) && (
+			<div class="meta-info">
+				{period && (
+					<span class="meta-item">
+						<Icon name="calendar" size={13} class="meta-icon" />
+						<span>{period}</span>
+					</span>
+				)}
+				{location && (
+					<span class="meta-item">
+						<Icon name="location" size={13} class="meta-icon" />
+						<span>{location}</span>
+					</span>
+				)}
+			</div>
+		)}
+
+		<div class="section-label">Responsibilities & Achievements</div>
+	</header>
+
+	<!-- Role Overview / Description -->
+	{
+		description && (
+			<div class="company-description">
+				<p>{description}</p>
+			</div>
+		)
+	}
+
+	<!-- Case 1: No subprojects (Direct bullet points + TechPills) -->
+	{
+		!hasProjects && (
+			<>
+				{keypoints.length > 0 && (
+					<ul class="keypoints-list">
+						{keypoints.map((point) => (
+							<li class="keypoint-item">
+								<span class="bullet-arrow">▹</span>
+								<span class="point-text">{point}</span>
+							</li>
+						))}
+					</ul>
+				)}
+
+				{technologies.length > 0 && (
+					<div class="tech-stack-container">
+						<div class="tech-pills-list">
+							{technologies.map((tech) => (
+								<TechPill name={tech as TechnologyId} />
+							))}
+						</div>
+					</div>
+				)}
+			</>
+		)
+	}
+
+	<!-- Case 2: Subprojects list -->
+	{
+		hasProjects && (
+			<div class="subprojects-container">
+				{projects.map((project, idx) => (
+					<div class="subproject-card">
+						<div class="subproject-header">
+							<div class="subproject-title-group">
+								<h4 class="subproject-title">
+									<span class="subproject-index">#{idx + 1}</span>
+									{project.title}
+								</h4>
+								{project.role && (
+									<span class="subproject-role">{project.role}</span>
+								)}
+							</div>
+							{project.period && (
+								<span class="subproject-period">
+									<Icon name="calendar" size={11} class="meta-icon" />
+									<span>{project.period}</span>
+								</span>
+							)}
+						</div>
+
+						{project.description && (
+							<p class="subproject-description">{project.description}</p>
+						)}
+
+						{project.keypoints && project.keypoints.length > 0 && (
+							<ul class="keypoints-list">
+								{project.keypoints.map((point) => (
+									<li class="keypoint-item">
+										<span class="bullet-arrow">▹</span>
+										<span class="point-text">{point}</span>
+									</li>
+								))}
+							</ul>
+						)}
+
+						{project.technologies && project.technologies.length > 0 && (
+							<div class="tech-stack-container">
+								<div class="tech-pills-list">
+									{project.technologies.map((tech) => (
+										<TechPill name={tech as TechnologyId} />
+									))}
+								</div>
+							</div>
+						)}
+					</div>
+				))}
+			</div>
+		)
+	}
+</div>
+
+<style lang="scss">
+	@use "../styles/theme.scss" as *;
+
+	/* --- Experience Card Container --- */
+	.experience-card {
+		flex: 1;
+		background-color: var(--bg-card);
+		border: 1px solid var(--border-color);
+		border-radius: 8px;
+		padding: 1.5rem;
+		box-shadow: 0 4px 16px var(--shadow-color);
+		transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+		&:hover {
+			border-color: var(--accent-cyan);
+			box-shadow: 0 0 16px var(--border-glow);
+		}
+
+		@media (max-width: 640px) {
+			padding: 1.15rem;
+		}
+	}
+
+	/* --- Header & Titles --- */
+	.card-header {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.35rem;
+		margin-bottom: 1.25rem;
+
+		.role-title {
+			font-size: 1.35rem;
+			font-weight: 700;
+			color: var(--accent-cyan);
+			margin: 0;
+			letter-spacing: -0.01em;
+		}
+
+		.company-name {
+			font-size: 1.1rem;
+			font-weight: 700;
+			color: var(--text-primary);
+			margin: 0;
+			letter-spacing: -0.01em;
+		}
+
+		.meta-info {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 1.25rem;
+			margin-top: 0.2rem;
+
+			.meta-item {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				font-size: 0.8rem;
+				color: var(--text-secondary);
+				font-family: var(--font-jetbrainsmono), Consolas, monospace;
+
+				.meta-icon {
+					color: var(--text-secondary);
+					opacity: 0.85;
+					flex-shrink: 0;
+				}
+			}
+		}
+
+		.section-label {
+			font-family: var(--font-jetbrainsmono), Consolas, monospace;
+			font-size: 0.72rem;
+			font-weight: 600;
+			color: var(--accent-metallic, #8892b0);
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+			margin-top: 1.1rem;
+			opacity: 0.85;
+		}
+	}
+
+	.company-description {
+		margin-bottom: 1.25rem;
+
+		p {
+			margin: 0;
+			color: var(--text-secondary);
+			line-height: 1.6;
+			font-size: 0.95rem;
+		}
+	}
+
+	/* --- Keypoints with cyber/clean arrows --- */
+	.keypoints-list {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1.25rem 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+
+		.keypoint-item {
+			display: flex;
+			align-items: flex-start;
+			gap: 0.6rem;
+			font-size: 0.85rem;
+			line-height: 1.6;
+			color: var(--text-primary);
+
+			.bullet-arrow {
+				color: var(--accent-cyan);
+				font-weight: bold;
+				flex-shrink: 0;
+				font-size: 1rem;
+				line-height: 1.5;
+			}
+
+			.point-text {
+				flex: 1;
+			}
+		}
+	}
+
+	/* --- Subprojects Layout --- */
+	.subprojects-container {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		margin-top: 1rem;
+	}
+
+	.subproject-card {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border-color);
+		border-radius: 6px;
+		padding: 1.25rem;
+		transition: all 0.2s ease;
+
+		&:hover {
+			border-color: rgba(0, 210, 255, 0.4);
+		}
+
+		.subproject-header {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: flex-start;
+			gap: 0.25rem;
+			margin-bottom: 0.75rem;
+
+			@media (min-width: 640px) {
+				flex-direction: row;
+				align-items: baseline;
+			}
+		}
+
+		.subproject-title-group {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: baseline;
+			gap: 0.5rem;
+		}
+
+		.subproject-title {
+			font-size: 1.1rem;
+			font-weight: 700;
+			color: var(--text-primary);
+			margin: 0;
+			display: flex;
+			align-items: center;
+			gap: 0.4rem;
+
+			.subproject-index {
+				font-family: var(--font-jetbrainsmono), Consolas, monospace;
+				font-size: 0.85rem;
+				color: var(--accent-cyan);
+			}
+		}
+
+		.subproject-role {
+			font-size: 0.85rem;
+			font-weight: 600;
+			color: var(--accent-cyan);
+		}
+
+		.subproject-period {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.35rem;
+			font-family: var(--font-jetbrainsmono), Consolas, monospace;
+			font-size: 0.75rem;
+			color: var(--accent-metallic);
+
+			.meta-icon {
+				color: var(--accent-metallic);
+				opacity: 0.85;
+			}
+		}
+
+		.subproject-description {
+			font-size: 0.9rem;
+			color: var(--text-secondary);
+			margin: 0 0 0.85rem 0;
+			line-height: 1.55;
+		}
+	}
+
+	/* --- Tech Stack Container --- */
+	.tech-stack-container {
+		margin-top: 0.75rem;
+
+		.tech-pills-list {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.45rem;
+		}
+	}
+</style>

@@ -2,19 +2,197 @@
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Nav from "../components/Nav.astro";
+import ExperienceCard, { type Props as ExperienceItem } from "../components/ExperienceCard.astro";
 
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+const PAGE_TITLE = "Work Experience - Manuel Bojato";
+const PAGE_DESCRIPTION =
+	"Discover Manuel Bojato's professional journey, roles, and software engineering impact across multiple companies and projects.";
+
+const experiences: ExperienceItem[] = [
+	{
+		company: "MPower Ventures AG",
+		role: "Full-Stack Engineer",
+		period: "May 2021 - August 2026",
+		location: "Remote",
+		description:
+			"Multi-application ecosystem powering solar asset financing, field operations, and real-time distribution across Sub-Saharan Africa.",
+		keypoints: [
+			"Architected 3 Progressive Web Apps (PWAs) leveraging modern Angular (18+) Signals and standalone architecture to deliver native-grade mobile experiences with zero separate mobile codebase overhead.",
+			"Directed GCP and Firebase serverless infrastructure (2nd Gen Cloud Functions, Cloud Hosting, Firebase Auth, and real-time Firestore sync), ensuring high availability and elastic scalability.",
+			"Engineered automated serverless Cloud Functions to scrape real-time foreign exchange rates across regional African banking portals, later architecting the migration to robust third-party financial APIs (Fixer.io) for high-reliability currency conversion.",
+			"Structured an Nx monorepo sharing core domain models, DTOs, and schemas between Angular frontends and Node.js/Firebase backends for strict contract safety and cross-stack PDF/CSV reporting.",
+			"Built performant, WCAG-compliant user interfaces with modern reactive state primitives to guarantee accessible and responsive user experiences.",
+			"Leveraged AI developer workflows (Codex and Antigravity) across the monorepo to automate code reviews, conduct repository audits, and execute codebase migrations to modern Angular paradigms (Signals, standalone components) that substantially boosted SPA performance.",
+		],
+		technologies: [
+			"angular",
+			"nodejs",
+			"typescript",
+			"gcp",
+			"firebase",
+			"rxjs",
+			"nx",
+			"github-actions",
+			"eslint",
+			"prettier",
+			"antigravity",
+			"jest",
+		],
+	},
+	{
+		company: "Pluriza",
+		role: "Full-Stack Engineer",
+		period: "October 2018 - April 2021",
+		location: "Barranquilla, Colombia (Hybrid)",
+		description:
+			"Spearheaded end-to-end development of 4 distinct full-stack projects spanning fleet management, healthcare analytics, corporate content management, and maritime logistics across diverse international client domains.",
+		projects: [
+			{
+				title: "Autocab Fleet & Booking Management Suite",
+				role: "Offshore Frontend Engineer",
+				// period: "October 2018 - April 2021",
+				description:
+					"Enterprise dispatch, booking, and real-time tracking platforms for a prominent UK-based taxi fleet software provider.",
+				keypoints: [
+					"Served as Offshore Developer collaborating with the UK engineering team to scale flagship dispatch and fleet management web platforms.",
+					"Architected interconnected SPAs for fleet booking, live vehicle tracking, and dashboard analytics using Angular, RxJS, and NgRx state management.",
+					"Delivered dynamic reactive forms, complex modals, and interactive data visualization interfaces adhering to evolving backend microservices.",
+					"Implemented comprehensive internationalization (i18n) and translation pipelines for global multi-region deployments.",
+					"Maintained strict code quality and architectural standards via rigorous Pull Request code reviews in GitLab.",
+				],
+				technologies: [
+					"angular",
+					"typescript",
+					"rxjs",
+					"ngrx",
+					"gitlab",
+					"jira",
+					"postman",
+				],
+			},
+			{
+				title: "Healthcare Quality & Patient Monitoring Analytics",
+				role: "Data & Backend Engineer",
+				// period: "July 2019 - April 2020",
+				description:
+					"Data-intensive analytics platform evaluating post-acute care quality and patient outcomes across US healthcare providers.",
+				keypoints: [
+					"Engineered Python/Flask APIs and GraphQL (Graphene) endpoints to ingest and serve critical patient and hospital monitoring metrics.",
+					"Modeled complex medical datasets with Pandas and Seaborn, enforcing strict compliance with MDS (nursing facilities) and OASIS (home health) healthcare standards.",
+					"Accelerated data pipeline execution through multi-threading architecture, slashing data processing runtime by 83% (from 30 minutes down to 5 minutes).",
+					"Built interactive dashboard scorecards in React.js with robust automated unit test coverage using pytest.",
+				],
+				technologies: [
+					"python",
+					"flask",
+					"postgresql",
+					"graphql",
+					"react",
+					"pandas",
+					"seaborn",
+					"pytest",
+				],
+			},
+			{
+				title: "Corporate Portal & Bespoke CMS",
+				role: "Full-Stack Developer",
+				// period: "June 2019 - March 2020",
+				description:
+					"Primary corporate website and custom serverless CMS portal for real-time publishing, job recruitment, and content management.",
+				keypoints: [
+					"Developed the public corporate website and a custom authenticated CMS with Markdown rich-text editing, image uploads, and categorized publishing.",
+					"Architected a secure serverless backend utilizing AWS Lambda, API Gateway, Cognito authentication, DynamoDB, and S3 media storage.",
+					"Integrated Google Analytics tracking to provide actionable marketing insights on visitor traffic and content engagement.",
+				],
+				technologies: [
+					"angular",
+					"typescript",
+					"bootstrap",
+					"rxjs",
+					"ngrx",
+					"aws",
+					"dynamodb",
+				],
+			},
+			{
+				title: "Maritime Port Community Logistics Platform (PoC)",
+				role: "Full-Stack Developer",
+				// period: "June 2019 - December 2019",
+				description:
+					"Logistics Proof-of-Concept platform integrating maritime port authorities, customs documentation, and container transit tracking.",
+				keypoints: [
+					"Engineered a high-fidelity logistics prototype aligning with international port standards to streamline merchandise transport workflows.",
+					"Developed interactive Angular dashboards tracking processed containers, TEUs, customs documentation (Pedimentos), and inspection statuses.",
+					"Architected serverless AWS Lambda microservices with Apollo GraphQL data retrieval and secure AWS S3 PDF document storage.",
+					"Applied Agile/Scrum methodologies in daily UX syncs to rapidly iterate and deliver a functional platform under evolving requirements.",
+				],
+				technologies: [
+					"angular",
+					"typescript",
+					"material",
+					"bootstrap",
+					"rxjs",
+					"graphql",
+					"apollo",
+					"aws",
+					"dynamodb",
+					"gitlab",
+				],
+			},
+		],
+	},
+];
 ---
 
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
 	</head>
 	<body>
 		<Nav />
 		<main>
-			<section></section>
+			<header class="work-header">
+				<h1 class="page-title">Work Experience</h1>
+				<p class="page-subtitle">
+					A detailed overview of my professional journey, key leadership roles, and
+					technical achievements across full-stack engineering and cloud-native solutions.
+				</p>
+			</header>
+
+			<section class="experience-wrapper" aria-label="Professional Experience">
+				{experiences.map((exp) => <ExperienceCard {...exp} />)}
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style lang="scss">
+	@use "../styles/theme.scss" as *;
+
+	.work-header {
+		margin-bottom: 2.5rem;
+
+		.page-title {
+			font-size: 2.5rem;
+			font-weight: 700;
+			color: var(--text-primary);
+			margin-bottom: 0.5rem;
+			letter-spacing: -0.02em;
+		}
+
+		.page-subtitle {
+			font-size: 1.1rem;
+			color: var(--text-secondary);
+			max-width: 680px;
+			line-height: 1.6;
+			margin: 0;
+		}
+	}
+
+	.experience-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+</style>
